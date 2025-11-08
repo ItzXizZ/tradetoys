@@ -20,6 +20,9 @@ export default function DonatorPage() {
   const [image, setImage] = useState<File | null>(null)
   const [uploading, setUploading] = useState(false)
   const [uploadError, setUploadError] = useState('')
+  const [condition, setCondition] = useState<'new' | 'used'>('used')
+  const [ageRange, setAgeRange] = useState('')
+  const [category, setCategory] = useState('')
 
   useEffect(() => {
     checkAuth()
@@ -96,7 +99,10 @@ export default function DonatorPage() {
           points,
           image_url: publicUrl,
           donator_id: profile.id,
-          status: 'available'
+          status: 'available',
+          condition,
+          age_range: ageRange,
+          category
         })
 
       if (insertError) {
@@ -108,6 +114,9 @@ export default function DonatorPage() {
       setDescription('')
       setPoints(10)
       setImage(null)
+      setCondition('used')
+      setAgeRange('')
+      setCategory('')
       setShowUploadForm(false)
       
       // Reload toys
@@ -123,7 +132,7 @@ export default function DonatorPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-2xl font-bold text-christmas-red">
-          🎄 Loading...
+          Loading...
         </div>
       </div>
     )
@@ -138,7 +147,7 @@ export default function DonatorPage() {
       <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8 christmas-card p-6">
           <h2 className="text-3xl font-bold text-christmas-red mb-2">
-            🎁 Welcome, Generous Donator!
+            Welcome, Generous Donator!
           </h2>
           <p className="text-gray-700">
             Thank you for sharing the joy of Christmas. Upload toys to help families in need.
@@ -150,7 +159,7 @@ export default function DonatorPage() {
             onClick={() => setShowUploadForm(!showUploadForm)}
             className="santa-button text-lg"
           >
-            {showUploadForm ? '❌ Cancel' : '➕ Donate a Toy'}
+            {showUploadForm ? 'Cancel' : 'Donate a Toy'}
           </button>
         </div>
 
@@ -183,26 +192,88 @@ export default function DonatorPage() {
                   onChange={(e) => setDescription(e.target.value)}
                   rows={3}
                   className="w-full px-4 py-2 border-2 border-christmas-green rounded-lg focus:outline-none focus:ring-2 focus:ring-christmas-red"
-                  placeholder="Describe the toy, its condition, age range, etc."
+                  placeholder="Describe the toy details..."
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">
-                  Point Value * (How valuable is this toy?)
-                </label>
-                <input
-                  type="number"
-                  value={points}
-                  onChange={(e) => setPoints(parseInt(e.target.value))}
-                  required
-                  min={1}
-                  max={100}
-                  className="w-full px-4 py-2 border-2 border-christmas-green rounded-lg focus:outline-none focus:ring-2 focus:ring-christmas-red"
-                />
-                <p className="text-sm text-gray-600 mt-1">
-                  Small toys: 5-15 points | Medium toys: 15-30 points | Large toys: 30+ points
-                </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                    Condition *
+                  </label>
+                  <select
+                    value={condition}
+                    onChange={(e) => setCondition(e.target.value as 'new' | 'used')}
+                    required
+                    className="w-full px-4 py-2 border-2 border-christmas-green rounded-lg focus:outline-none focus:ring-2 focus:ring-christmas-red"
+                  >
+                    <option value="used">Used</option>
+                    <option value="new">New (Unopened)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                    Category *
+                  </label>
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    required
+                    className="w-full px-4 py-2 border-2 border-christmas-green rounded-lg focus:outline-none focus:ring-2 focus:ring-christmas-red"
+                  >
+                    <option value="">Select category...</option>
+                    <option value="Action Figures">Action Figures</option>
+                    <option value="Building Blocks">Building Blocks (LEGO, etc.)</option>
+                    <option value="Dolls & Plush">Dolls & Plush Toys</option>
+                    <option value="Educational">Educational Toys</option>
+                    <option value="Board Games">Board Games</option>
+                    <option value="Arts & Crafts">Arts & Crafts</option>
+                    <option value="Outdoor & Sports">Outdoor & Sports</option>
+                    <option value="Electronics">Electronic Toys</option>
+                    <option value="Vehicles">Vehicles & Remote Control</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                    Recommended Age Range *
+                  </label>
+                  <select
+                    value={ageRange}
+                    onChange={(e) => setAgeRange(e.target.value)}
+                    required
+                    className="w-full px-4 py-2 border-2 border-christmas-green rounded-lg focus:outline-none focus:ring-2 focus:ring-christmas-red"
+                  >
+                    <option value="">Select age range...</option>
+                    <option value="0-2 years">0-2 years</option>
+                    <option value="3-5 years">3-5 years</option>
+                    <option value="6-8 years">6-8 years</option>
+                    <option value="9-12 years">9-12 years</option>
+                    <option value="13+ years">13+ years</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                    Point Value * (How valuable is this toy?)
+                  </label>
+                  <input
+                    type="number"
+                    value={points}
+                    onChange={(e) => setPoints(parseInt(e.target.value))}
+                    required
+                    min={1}
+                    max={100}
+                    className="w-full px-4 py-2 border-2 border-christmas-green rounded-lg focus:outline-none focus:ring-2 focus:ring-christmas-red"
+                  />
+                  <p className="text-sm text-gray-600 mt-1">
+                    Small: 5-15 | Medium: 15-30 | Large: 30+
+                  </p>
+                </div>
               </div>
 
               <div>
@@ -229,7 +300,7 @@ export default function DonatorPage() {
                 disabled={uploading}
                 className="santa-button w-full"
               >
-                {uploading ? '📤 Uploading...' : '🎁 Donate This Toy'}
+                {uploading ? 'Uploading...' : 'Donate This Toy'}
               </button>
             </form>
           </div>
@@ -242,7 +313,7 @@ export default function DonatorPage() {
 
           {toys.length === 0 ? (
             <div className="text-center py-12 text-gray-500">
-              <p className="text-xl mb-2">🎄 No toys donated yet</p>
+              <p className="text-xl mb-2">No toys donated yet</p>
               <p>Click "Donate a Toy" to get started!</p>
             </div>
           ) : (
@@ -260,16 +331,35 @@ export default function DonatorPage() {
                   <p className="text-sm text-gray-600 mb-2 line-clamp-2">
                     {toy.description || 'No description'}
                   </p>
+                  <div className="mb-2">
+                    <span className={`inline-block px-2 py-1 rounded text-xs font-bold mr-2 ${
+                      toy.condition === 'new' 
+                        ? 'bg-blue-100 text-blue-700'
+                        : 'bg-gray-100 text-gray-700'
+                    }`}>
+                      {toy.condition === 'new' ? 'New' : 'Used'}
+                    </span>
+                    {toy.category && (
+                      <span className="inline-block px-2 py-1 rounded text-xs font-bold bg-purple-100 text-purple-700">
+                        {toy.category}
+                      </span>
+                    )}
+                  </div>
+                  {toy.age_range && (
+                    <p className="text-xs text-gray-500 mb-2">
+                      Age: {toy.age_range}
+                    </p>
+                  )}
                   <div className="flex justify-between items-center">
                     <span className="text-christmas-gold font-bold text-lg">
-                      ⭐ {toy.points} points
+                      {toy.points} points
                     </span>
                     <span className={`px-3 py-1 rounded-full text-sm font-bold ${
                       toy.status === 'available' 
                         ? 'bg-green-100 text-green-700'
                         : 'bg-red-100 text-red-700'
                     }`}>
-                      {toy.status === 'available' ? '✅ Available' : '🎁 Claimed'}
+                      {toy.status === 'available' ? 'Available' : 'Claimed'}
                     </span>
                   </div>
                 </div>

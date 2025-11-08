@@ -27,6 +27,7 @@ export interface ReceiverPoints {
 }
 
 export type ToyStatus = 'available' | 'reserved' | 'claimed'
+export type ToyCondition = 'new' | 'used'
 
 export interface Toy {
   id: string
@@ -36,6 +37,9 @@ export interface Toy {
   image_url: string
   status: ToyStatus
   donator_id: string | null
+  condition?: ToyCondition
+  age_range?: string
+  category?: string
   created_at: string
   updated_at: string
 }

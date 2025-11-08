@@ -195,7 +195,7 @@ export default function AdminPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-2xl font-bold text-christmas-red">
-          🎄 Loading...
+          Loading...
         </div>
       </div>
     )
@@ -210,7 +210,7 @@ export default function AdminPage() {
       <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8 christmas-card p-6">
           <h2 className="text-3xl font-bold text-christmas-red mb-2">
-            👑 Admin Dashboard
+            Admin Dashboard
           </h2>
           <p className="text-gray-700">
             Manage users, monitor toys, and track Santa's Sacks
@@ -227,7 +227,7 @@ export default function AdminPage() {
                 : 'bg-white text-gray-700 border-2 border-christmas-red'
             }`}
           >
-            👥 Users ({users.length})
+            Users ({users.length})
           </button>
           <button
             onClick={() => setActiveTab('toys')}
@@ -237,7 +237,7 @@ export default function AdminPage() {
                 : 'bg-white text-gray-700 border-2 border-christmas-red'
             }`}
           >
-            🎁 All Toys ({allToys.length})
+            All Toys ({allToys.length})
           </button>
           <button
             onClick={() => setActiveTab('sacks')}
@@ -262,7 +262,7 @@ export default function AdminPage() {
                 onClick={() => setShowCreateUser(!showCreateUser)}
                 className="santa-button"
               >
-                {showCreateUser ? '❌ Cancel' : '➕ Create User'}
+                {showCreateUser ? 'Cancel' : 'Create User'}
               </button>
             </div>
 
@@ -270,7 +270,7 @@ export default function AdminPage() {
               <div className="mb-6 p-6 bg-green-50 rounded-lg border-2 border-christmas-green">
                 <div className="mb-4 p-4 bg-yellow-50 border-2 border-yellow-400 rounded-lg">
                   <p className="text-sm font-bold text-yellow-800 mb-2">
-                    ⚠️ Important: Email Confirmation Must Be Disabled
+                    Important: Email Confirmation Must Be Disabled
                   </p>
                   <p className="text-xs text-yellow-700 mb-2">
                     For users to login immediately, disable email confirmation in{' '}
@@ -381,7 +381,7 @@ export default function AdminPage() {
                     disabled={creating}
                     className="santa-button w-full"
                   >
-                    {creating ? '⏳ Creating...' : '✅ Create User'}
+                    {creating ? 'Creating...' : 'Create User'}
                   </button>
                 </form>
               </div>
@@ -413,7 +413,7 @@ export default function AdminPage() {
                               ? 'bg-blue-100 text-blue-700'
                               : 'bg-green-100 text-green-700'
                           }`}>
-                            {user.role === 'admin' ? '👑' : user.role === 'donator' ? '🎁' : '🎄'} {user.role}
+                            {user.role}
                           </span>
                         </td>
                         <td className="py-3 px-4">
@@ -470,7 +470,7 @@ export default function AdminPage() {
                   </p>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-christmas-gold font-bold">
-                      ⭐ {toy.points} points
+                      {toy.points} points
                     </span>
                     <span className={`px-2 py-1 rounded-full text-xs font-bold ${
                       toy.status === 'available' 
@@ -499,7 +499,7 @@ export default function AdminPage() {
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <h3 className="text-xl font-bold text-christmas-red">
-                        🎄 {sack.receiver.full_name}
+                        {sack.receiver.full_name}
                       </h3>
                       <p className="text-gray-600">{sack.receiver.email}</p>
                     </div>
@@ -530,7 +530,7 @@ export default function AdminPage() {
                             <div>
                               <h5 className="font-bold text-sm">{item.toy.title}</h5>
                               <p className="text-christmas-gold text-sm font-bold">
-                                ⭐ {item.toy.points} pts
+                                {item.toy.points} pts
                               </p>
                             </div>
                           </div>
@@ -540,7 +540,7 @@ export default function AdminPage() {
                         <div className="flex justify-between items-center font-bold">
                           <span>Total Items: {sack.items.length}</span>
                           <span className="text-christmas-gold">
-                            Total Points: ⭐ {totalPoints}
+                            Total Points: {totalPoints}
                           </span>
                         </div>
                       </div>

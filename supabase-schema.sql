@@ -10,6 +10,9 @@ CREATE TYPE user_role AS ENUM ('admin', 'donator', 'receiver');
 -- Create enum for toy status
 CREATE TYPE toy_status AS ENUM ('available', 'reserved', 'claimed');
 
+-- Create enum for toy condition
+CREATE TYPE toy_condition AS ENUM ('new', 'used');
+
 -- Users table (extends Supabase auth.users)
 CREATE TABLE public.profiles (
     id UUID REFERENCES auth.users(id) PRIMARY KEY,
@@ -41,6 +44,9 @@ CREATE TABLE public.toys (
     image_url TEXT NOT NULL,
     status toy_status NOT NULL DEFAULT 'available',
     donator_id UUID REFERENCES public.profiles(id) ON DELETE SET NULL,
+    condition toy_condition DEFAULT 'used',
+    age_range TEXT,
+    category TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );

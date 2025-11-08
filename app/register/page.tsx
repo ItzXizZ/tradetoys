@@ -54,7 +54,7 @@ export default function RegisterPage() {
       <div className="christmas-card w-full max-w-md p-8 my-8">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-christmas-red mb-2">
-            🎁 Register as Donator
+            Register as Donator
           </h1>
           <p className="text-christmas-green text-lg">
             Join TradeToys.ca to donate toys
@@ -63,7 +63,7 @@ export default function RegisterPage() {
 
         {success ? (
           <div className="bg-green-50 border-2 border-green-300 text-green-700 px-4 py-6 rounded-lg text-center">
-            <p className="text-xl font-bold mb-2">🎉 Registration Successful!</p>
+            <p className="text-xl font-bold mb-2">Registration Successful!</p>
             <p>Redirecting to login...</p>
           </div>
         ) : (
@@ -128,7 +128,7 @@ export default function RegisterPage() {
               disabled={loading}
               className="santa-button w-full text-lg"
             >
-              {loading ? '🎄 Creating Account...' : '🎁 Register'}
+              {loading ? 'Creating Account...' : 'Register'}
             </button>
           </form>
         )}
@@ -143,8 +143,8 @@ export default function RegisterPage() {
         </div>
 
         <div className="mt-4 text-center text-sm text-gray-600">
-          <p>🎄 This registration is for donators only</p>
-          <p>🎅 Receivers get accounts from admins</p>
+          <p>This registration is for donators only</p>
+          <p>Receivers get accounts from admins</p>
         </div>
       </div>
 

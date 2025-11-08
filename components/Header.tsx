@@ -16,12 +16,6 @@ export default function Header({ profile }: HeaderProps) {
     router.push('/login')
   }
 
-  const roleEmoji = {
-    admin: '👑',
-    donator: '🎁',
-    receiver: '🎄'
-  }
-
   const roleLabel = {
     admin: 'Admin',
     donator: 'Donator',
@@ -38,7 +32,7 @@ export default function Header({ profile }: HeaderProps) {
               🎅 TradeToys.ca
             </h1>
             <p className="text-christmas-green text-sm">
-              {roleEmoji[profile.role]} {roleLabel[profile.role]} Portal
+              {roleLabel[profile.role]} Portal
             </p>
           </div>
           <div className="flex items-center gap-4">
@@ -50,7 +44,7 @@ export default function Header({ profile }: HeaderProps) {
               onClick={handleSignOut}
               className="elf-button"
             >
-              🚪 Logout
+              Logout
             </button>
           </div>
         </div>

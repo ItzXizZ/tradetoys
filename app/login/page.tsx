@@ -59,7 +59,7 @@ export default function LoginPage() {
       <div className="christmas-card w-full max-w-md p-8 my-8">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-christmas-red mb-2">
-            🎅 TradeToys.ca
+            TradeToys.ca
           </h1>
           <p className="text-christmas-green text-lg">
             Share the Joy of Christmas
@@ -108,7 +108,7 @@ export default function LoginPage() {
             disabled={loading}
             className="santa-button w-full text-lg"
           >
-            {loading ? '🎄 Logging in...' : '🎁 Login'}
+            {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
@@ -122,8 +122,8 @@ export default function LoginPage() {
         </div>
 
         <div className="mt-4 text-center text-sm text-gray-600">
-          <p>🎄 Donators can register themselves</p>
-          <p>🎅 Receivers get accounts from admins</p>
+          <p>Donators can register themselves</p>
+          <p>Receivers get accounts from admins</p>
         </div>
       </div>
 

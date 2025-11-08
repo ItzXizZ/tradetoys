@@ -149,7 +149,7 @@ export default function ReceiverPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-2xl font-bold text-christmas-red">
-          🎄 Loading...
+          Loading...
         </div>
       </div>
     )
@@ -170,7 +170,7 @@ export default function ReceiverPage() {
           <div className="flex justify-between items-start">
             <div>
               <h2 className="text-3xl font-bold text-christmas-red mb-2">
-                🎄 Christmas Toy Marketplace
+                Christmas Toy Marketplace
               </h2>
               <p className="text-gray-700">
                 Select toys for your children using your available points!
@@ -179,7 +179,7 @@ export default function ReceiverPage() {
             <div className="text-right">
               <div className="bg-christmas-gold text-white px-6 py-3 rounded-lg mb-2">
                 <p className="text-sm font-bold">Your Points</p>
-                <p className="text-3xl font-bold">⭐ {points.available_points}</p>
+                <p className="text-3xl font-bold">{points.available_points}</p>
               </div>
               <button
                 onClick={() => setShowSack(!showSack)}
@@ -213,7 +213,7 @@ export default function ReceiverPage() {
                 onClick={() => setShowSack(false)}
                 className="text-gray-500 hover:text-gray-700 text-2xl"
               >
-                ✖
+                ×
               </button>
             </div>
 
@@ -234,13 +234,13 @@ export default function ReceiverPage() {
                       />
                       <div className="flex-1">
                         <h4 className="font-bold text-gray-800">{item.toy.title}</h4>
-                        <p className="text-christmas-gold font-bold">⭐ {item.toy.points} points</p>
+                        <p className="text-christmas-gold font-bold">{item.toy.points} points</p>
                         <button
                           onClick={() => removeFromSack(item.toy!.id)}
                           disabled={actionLoading}
                           className="mt-2 text-sm text-red-600 hover:text-red-800 font-bold"
                         >
-                          ❌ Remove
+                          Remove
                         </button>
                       </div>
                     </div>
@@ -249,7 +249,7 @@ export default function ReceiverPage() {
                 <div className="border-t-2 border-christmas-red pt-4">
                   <div className="flex justify-between items-center text-xl font-bold">
                     <span>Total Points Used:</span>
-                    <span className="text-christmas-gold">⭐ {sackTotalPoints}</span>
+                    <span className="text-christmas-gold">{sackTotalPoints}</span>
                   </div>
                 </div>
               </>
@@ -265,7 +265,7 @@ export default function ReceiverPage() {
 
           {availableToys.length === 0 ? (
             <div className="text-center py-12 text-gray-500">
-              <p className="text-xl mb-2">🎁 No toys available yet</p>
+              <p className="text-xl mb-2">No toys available yet</p>
               <p>Check back soon for new donations!</p>
             </div>
           ) : (
@@ -286,7 +286,7 @@ export default function ReceiverPage() {
                   </p>
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-christmas-gold font-bold text-lg">
-                      ⭐ {toy.points} points
+                      {toy.points} points
                     </span>
                   </div>
                   <button
@@ -295,14 +295,14 @@ export default function ReceiverPage() {
                     className="santa-button w-full"
                   >
                     {points.available_points < toy.points 
-                      ? '❌ Not Enough Points' 
-                      : '🎁 Add to Sack'}
+                      ? 'Not Enough Points' 
+                      : 'Add to Sack'}
                   </button>
                   <button
                     onClick={() => setSelectedToy(toy)}
                     className="elf-button w-full mt-2"
                   >
-                    👁 View Details
+                    View Details
                   </button>
                 </div>
               ))}
@@ -322,7 +322,7 @@ export default function ReceiverPage() {
                   onClick={() => setSelectedToy(null)}
                   className="text-gray-500 hover:text-gray-700 text-2xl"
                 >
-                  ✖
+                  ×
                 </button>
               </div>
               <img
@@ -338,7 +338,7 @@ export default function ReceiverPage() {
               </div>
               <div className="flex justify-between items-center mb-4">
                 <span className="text-christmas-gold font-bold text-2xl">
-                  ⭐ {selectedToy.points} points
+                  {selectedToy.points} points
                 </span>
               </div>
               <button
@@ -349,8 +349,8 @@ export default function ReceiverPage() {
                 className="santa-button w-full text-lg"
               >
                 {points.available_points < selectedToy.points 
-                  ? '❌ Not Enough Points' 
-                  : '🎁 Add to Santa\'s Sack'}
+                  ? 'Not Enough Points' 
+                  : 'Add to Santa\'s Sack'}
               </button>
             </div>
           </div>

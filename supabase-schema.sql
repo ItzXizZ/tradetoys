@@ -77,6 +77,15 @@ CREATE POLICY "Users can update their own profile"
     ON public.profiles FOR UPDATE 
     USING (auth.uid() = id);
 
+CREATE POLICY "Admins can delete any profile" 
+    ON public.profiles FOR DELETE 
+    USING (
+        EXISTS (
+            SELECT 1 FROM public.profiles 
+            WHERE profiles.id = auth.uid() AND profiles.role = 'admin'
+        )
+    );
+
 -- Receiver points policies
 CREATE POLICY "Receivers can view their own points" 
     ON public.receiver_points FOR SELECT 

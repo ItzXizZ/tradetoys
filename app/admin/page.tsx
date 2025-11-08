@@ -191,6 +191,30 @@ export default function AdminPage() {
     }
   }
 
+  async function deleteUser(userId: string, userName: string) {
+    if (!confirm(`Are you sure you want to delete user "${userName}"? This action cannot be undone.`)) {
+      return
+    }
+
+    try {
+      // Delete from profiles table (this will cascade to other tables)
+      const { error } = await supabase
+        .from('profiles')
+        .delete()
+        .eq('id', userId)
+
+      if (error) throw error
+
+      // Reload users list
+      await loadUsers()
+      await loadSacks()
+      
+      alert('User deleted successfully')
+    } catch (err: any) {
+      alert(`Failed to delete user: ${err.message}`)
+    }
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -395,6 +419,7 @@ export default function AdminPage() {
                     <th className="text-left py-3 px-4 font-bold">Email</th>
                     <th className="text-left py-3 px-4 font-bold">Role</th>
                     <th className="text-left py-3 px-4 font-bold">Points</th>
+                    <th className="text-left py-3 px-4 font-bold">Created</th>
                     <th className="text-left py-3 px-4 font-bold">Actions</th>
                   </tr>
                 </thead>
@@ -437,6 +462,15 @@ export default function AdminPage() {
                           <span className="text-sm text-gray-500">
                             {new Date(user.created_at).toLocaleDateString()}
                           </span>
+                        </td>
+                        <td className="py-3 px-4">
+                          <button
+                            onClick={() => deleteUser(user.id, user.full_name)}
+                            className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-sm font-bold rounded transition-colors"
+                            title="Delete user"
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
                     )

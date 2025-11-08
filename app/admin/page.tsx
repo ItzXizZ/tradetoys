@@ -264,8 +264,25 @@ export default function AdminPage() {
 
             {showCreateUser && (
               <div className="mb-6 p-6 bg-green-50 rounded-lg border-2 border-christmas-green">
+                <div className="mb-4 p-4 bg-yellow-50 border-2 border-yellow-400 rounded-lg">
+                  <p className="text-sm font-bold text-yellow-800 mb-2">
+                    ⚠️ Note: Client-side user creation has limitations
+                  </p>
+                  <p className="text-xs text-yellow-700">
+                    For best results, create users directly in the{' '}
+                    <a 
+                      href="https://supabase.com/dashboard/project/jjxwridpyplxqlefibni/auth/users" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline font-bold"
+                    >
+                      Supabase Dashboard
+                    </a>
+                    . See ADMIN_USER_CREATION_GUIDE.md for instructions.
+                  </p>
+                </div>
                 <h4 className="text-xl font-bold text-christmas-green mb-4">
-                  Create New User Account
+                  Create New User Account (May require email confirmation)
                 </h4>
                 <form onSubmit={handleCreateUser} className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -8,13 +8,15 @@ Vercel is the easiest way to deploy Next.js applications.
 
 #### Steps:
 
-1. **Push to GitHub**
+1. **Already on GitHub!**
+   
+   Your repository is at: https://github.com/ItzXizZ/tradetoys.git
+   
+   To push future changes:
    ```bash
-   git init
    git add .
-   git commit -m "Initial commit"
-   git remote add origin YOUR_GITHUB_REPO_URL
-   git push -u origin main
+   git commit -m "Your commit message"
+   git push origin main
    ```
 
 2. **Deploy to Vercel**

@@ -108,14 +108,15 @@ Open your browser to: http://localhost:3000
 
 ### As Admin:
 1. **Create Receiver Accounts**:
-   - Click "Create User" 
-   - Set role to "Receiver"
-   - Allocate points (e.g., 100 points)
+   - **Recommended**: Use Supabase Dashboard (see `ADMIN_USER_CREATION_GUIDE.md`)
+   - Go to: https://supabase.com/dashboard/project/jjxwridpyplxqlefibni/auth/users
+   - Click "Add user" → Set email, password, and auto-confirm
+   - Add user metadata with role and points
    - Give them their login credentials
 
 2. **Create/Invite Donators**:
    - Donators can register themselves at `/register`
-   - Or you can create their accounts manually
+   - Or create their accounts in Supabase Dashboard
 
 ### As Donator:
 1. Register at http://localhost:3000/register

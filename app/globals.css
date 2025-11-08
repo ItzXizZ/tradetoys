@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --christmas-red: #DC2626;
+  --christmas-green: #059669;
+  --christmas-dark-green: #047857;
+  --christmas-gold: #F59E0B;
+}
+
+body {
+  background: linear-gradient(135deg, #f0fdf4 0%, #fef2f2 100%);
+  min-height: 100vh;
+}
+
+/* Christmas decorations */
+.snowflake {
+  position: fixed;
+  top: -10px;
+  z-index: 9999;
+  user-select: none;
+  cursor: default;
+  animation-name: snowfall;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translate3d(var(--left-ini), 0, 0);
+  }
+  100% {
+    transform: translate3d(var(--left-end), 110vh, 0);
+  }
+}
+
+.christmas-card {
+  background: white;
+  border: 3px solid var(--christmas-red);
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(220, 38, 38, 0.15);
+}
+
+.santa-button {
+  background: linear-gradient(135deg, var(--christmas-red) 0%, #b91c1c 100%);
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);
+}
+
+.santa-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(220, 38, 38, 0.4);
+}
+
+.santa-button:disabled {
+  background: #9CA3AF;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.elf-button {
+  background: linear-gradient(135deg, var(--christmas-green) 0%, var(--christmas-dark-green) 100%);
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(5, 150, 105, 0.3);
+}
+
+.elf-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(5, 150, 105, 0.4);
+}
+
+.gift-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.gift-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(220, 38, 38, 0.25);
+}
+
+.bell-icon {
+  animation: ring 2s ease-in-out infinite;
+}
+
+@keyframes ring {
+  0%, 50%, 100% {
+    transform: rotate(0deg);
+  }
+  10%, 30% {
+    transform: rotate(-10deg);
+  }
+  20%, 40% {
+    transform: rotate(10deg);
+  }
+}
+
+/* Candy cane pattern */
+.candy-cane-border {
+  background: repeating-linear-gradient(
+    45deg,
+    #DC2626,
+    #DC2626 10px,
+    white 10px,
+    white 20px
+  );
+  height: 8px;
+}
+

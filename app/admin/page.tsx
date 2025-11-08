@@ -152,9 +152,13 @@ export default function AdminPage() {
         email: newUserEmail,
         password: newUserPassword,
         options: {
+          emailRedirectTo: window.location.origin,
           data: metadata
         }
       })
+      
+      // Note: Email confirmation must be disabled in Supabase Auth settings
+      // Or users must be created with "Auto Confirm" in the dashboard
 
       if (error) throw error
 
@@ -266,10 +270,22 @@ export default function AdminPage() {
               <div className="mb-6 p-6 bg-green-50 rounded-lg border-2 border-christmas-green">
                 <div className="mb-4 p-4 bg-yellow-50 border-2 border-yellow-400 rounded-lg">
                   <p className="text-sm font-bold text-yellow-800 mb-2">
-                    ⚠️ Note: Client-side user creation has limitations
+                    ⚠️ Important: Email Confirmation Must Be Disabled
+                  </p>
+                  <p className="text-xs text-yellow-700 mb-2">
+                    For users to login immediately, disable email confirmation in{' '}
+                    <a 
+                      href="https://supabase.com/dashboard/project/jjxwridpyplxqlefibni/auth/providers" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline font-bold"
+                    >
+                      Supabase Auth Settings
+                    </a>
+                    {' '}(Authentication → Providers → Email → Turn OFF "Confirm email")
                   </p>
                   <p className="text-xs text-yellow-700">
-                    For best results, create users directly in the{' '}
+                    Or create users directly in the{' '}
                     <a 
                       href="https://supabase.com/dashboard/project/jjxwridpyplxqlefibni/auth/users" 
                       target="_blank"
@@ -278,7 +294,7 @@ export default function AdminPage() {
                     >
                       Supabase Dashboard
                     </a>
-                    . See ADMIN_USER_CREATION_GUIDE.md for instructions.
+                    {' '}with "Auto Confirm User" checked. See FIX_EMAIL_CONFIRMATION.md for details.
                   </p>
                 </div>
                 <h4 className="text-xl font-bold text-christmas-green mb-4">
